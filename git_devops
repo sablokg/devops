@@ -31,7 +31,7 @@ git version 2.17.1
 2. sablokg@slave2:~$ git config 
 usage: git config [<options>]
 
-Config file location
+# Config file location
     --global              use global config file # Location of the glocabl config 
     --system              use system config file # Location of the system config 
     --local               use repository config file # Location of the local config
@@ -40,13 +40,13 @@ Config file location
 
     In linux the config file is located under the ~/.gitconfig 
 
-adding a user to the git: $ git config --global user.name $username && git config --global user.email $useremail. You can define this in the bash if you have multiple username and password to be defined or you can write a yaml for it in case you are using ansible. 
+# adding a user to the git: $ git config --global user.name $username && git config --global user.email $useremail. You can define this in the bash if you have multiple username and password to be defined or you can write a yaml for it in case you are using ansible. 
 
  !/bin/sh (shebang)
  username = username
  useremail = useremail
 
- writing a yaml for the git 
+# writing a yaml for the git 
 
 ---  # Start of the yaml
 -                        # List of sequences 
