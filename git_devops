@@ -40,11 +40,14 @@ Config file location
 
     In linux the config file is located under the ~/.gitconfig 
  
- adding a user to the git: $ git config --global user.name $username && git config --global user.email $useremail. You can define this in the bash as 
+ adding a user to the git: $ git config --global user.name $username && git config --global user.email $useremail. You can define this in the bash if you have multiple username and password to be defined or you can write a yaml for it in case you are using jenkins. 
 
  !/bin/sh (shebang)
  username = username
  useremail = useremail
 
- 3. 
+ writing a yaml for the git 
+
+ ---
+    - hosts: 
 
