@@ -116,6 +116,53 @@ sablokg@instance-1:~/gittest$ git commit -m "inital commit: starting git" # comm
  1 file changed, 1 insertion(+)
  create mode 100644 git.txt
 
+ 7. Lets start with a detailed git: Git uses the SHA-1 encryption for commit made, means it produces a 160-bit hash value. Below you will see a working example of the commit and what happens when we commit without adding the git. 
+
+# Making a directory 
+sablokg@instance-1:~$ mkdir test_git 
+sablokg@instance-1:~$ cd test_git 
+# Initializing a directory 
+sablokg@instance-1:~/test_git$ git init 
+Initialized empty Git repository in /home/sablokg/test_git/.git/
+# Copying the text files to the directory 
+sablokg@instance-1:~/test_git$ cp -r ../*.txt ./
+# Checking the directory contents 
+sablokg@instance-1:~/test_git$ ls -l 
+total 8
+-rw-rw-r-- 1 sablokg sablokg 21 Oct 26 09:51 file3.txt
+-rw-rw-r-- 1 sablokg sablokg 21 Oct 26 09:51 file4.txt
+# Adding a README file
+sablokg@instance-1:~/test_git$ nano README.md
+# Listing all the files in the git directory 
+sablokg@instance-1:~/test_git$ ls -l 
+total 12
+-rw-rw-r-- 1 sablokg sablokg 19 Oct 26 09:51 README.md
+-rw-rw-r-- 1 sablokg sablokg 21 Oct 26 09:51 file3.txt
+-rw-rw-r-- 1 sablokg sablokg 21 Oct 26 09:51 file4.txt
+# Now here i commit the files directly to the git without adding the files, so you can see that it is showing that the files are untracked, means it doesnt know which branch to add. 
+sablokg@instance-1:~/test_git$ git commit -m "Initial commit"
+On branch master
+Initial commit
+Untracked files:
+        README.md
+        file3.txt
+        file4.txt
+nothing added to commit but untracked files present
+# Now i do the proper commit by adding the files 
+sablokg@instance-1:~/test_git$ git add . # adding the git. 
+# Now commiting the git after adding.You can see that it says three insertions have been made to the git.  
+sablokg@instance-1:~/test_git$ git commit -m "Initial commit"
+[master (root-commit) b2a25c8] Initial commit
+ 3 files changed, 3 insertions(+)
+ create mode 100644 README.md
+ create mode 100644 file3.txt
+ create mode 100644 file4.txt
+# Now to check further, check the git log and you can see who made the insertion, when and to which branch. 
+sablokg@instance-1:~/test_git$ git log 
+commit b2a25c8106d88324d93be71ee99a0fc3ae87b488 (HEAD -> master)
+Author: sablokg <sablokg@gmail.com>
+Date:   Wed Oct 26 09:55:31 2022 +0000
+
 
 
 
