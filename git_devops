@@ -233,7 +233,7 @@ sablokg@instance-1:~/test_git$ git branch
   addition
 * master
 
-Switching to the addition branch and you can see that now the branch has changed to the addition* branch and now whatever commit you will make it will go to the addition branch. 
+# Switching to the addition branch and you can see that now the branch has changed to the addition* branch and now whatever commit you will make it will go to the addition branch. 
 
 sablokg@instance-1:~/test_git$ git checkout addition 
 Switched to branch 'addition'
@@ -249,9 +249,49 @@ sablokg@instance-1:~/test_git$ git branch
   master
 * new_addition
 
-# To see which changes are made in the log 
+# To see which changes are made in the log: Remember this should be executed with in the git directory you made.
 sablokg@instance-1:~/test_git$ git log --pretty=oneline
-b2a25c8106d88324d93be71ee99a0fc3ae87b488 (HEAD -> new_addition, master, addition) Initial commit
+b2a25c8106d88324d93be71ee99a0fc3ae87b488 (HEAD -> new_addition, master, addition) Initial commit. 
+
+# To see the details log: Remember this should be executed with in the git directory you made.
+sablokg@instance-1:~/gittest$ git log 
+commit e841188e716ba53107af4cc642355df928c8c224 (HEAD -> master)
+Author: sablokg <sablokg@gmail.com>
+Date:   Wed Oct 26 10:12:35 2022 +0000
+
+    Initial commit adding
+
+commit d614419593e57a02b3107307a6f627bca2212cc4
+Author: sablokg <sablokg@gmail.com>
+Date:   Wed Oct 26 10:10:25 2022 +0000
+
+    Initial commit
+
+commit 787e17ab050fe274d677bec8d0f9dd99157af70f
+Author: sablokg <sablokg@gmail.com>
+Date:   Wed Oct 26 05:52:56 2022 +0000
+
+    inital commit: starting git
+
+# To see the log in graphs: Remember this should be executed with in the git directory you made.
+sablokg@instance-1:~/gittest$ git log --graph
+* commit e841188e716ba53107af4cc642355df928c8c224 (HEAD -> master)
+| Author: sablokg <sablokg@gmail.com>
+| Date:   Wed Oct 26 10:12:35 2022 +0000
+| 
+|     Initial commit adding
+| 
+* commit d614419593e57a02b3107307a6f627bca2212cc4
+| Author: sablokg <sablokg@gmail.com>
+| Date:   Wed Oct 26 10:10:25 2022 +0000
+| 
+|     Initial commit
+| 
+* commit 787e17ab050fe274d677bec8d0f9dd99157af70f
+  Author: sablokg <sablokg@gmail.com>
+  Date:   Wed Oct 26 05:52:56 2022 +0000
+  
+      inital commit: starting git
 
 # Next is how to check for the difference in the changes made. This can be done using the diff command. 
 
