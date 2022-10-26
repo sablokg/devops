@@ -249,6 +249,22 @@ sablokg@instance-1:~/test_git$ git branch
   master
 * new_addition
 
+# To see which changes are made in the log 
+sablokg@instance-1:~/test_git$ git log --pretty=oneline
+b2a25c8106d88324d93be71ee99a0fc3ae87b488 (HEAD -> new_addition, master, addition) Initial commit
+
+# Next is how to check for the difference in the changes made. This can be done using the diff command. 
+
+sablokg@instance-1:~/test_git$ git diff 
+diff --git a/file3.txt b/file3.txt
+index ac0d936..f666ad2 100644
+--- a/file3.txt
++++ b/file3.txt
+@@ -1 +1 @@
+-file3.txt devopsdemo
++i created this file3file3.txt devopsdemo
+ 
+ This is telling me that i made the changes to this file. I made the changes in the file3 (minus sign) which are reflected in the file3 (plus sign)
 
 
 
