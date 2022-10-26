@@ -25,10 +25,10 @@
 
 1. Install git: $ sudo apt-get update && sudo apt-get install git > 1.out & 2 >out.err
 
-sablokg@slave2:~$ git --version 
+sablokg@instance-1:~$ git --version 
 git version 2.17.1
 
-2. sablokg@slave2:~$ git config 
+2. sablokg@instance-1:~$ git config 
 usage: git config [<options>]
 
 # Config file location
