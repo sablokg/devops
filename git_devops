@@ -1,16 +1,23 @@
 # This repository is for git devops and it will put all the git devops for the DevOPS. 
 
-1. Version Control also called a Scource code management is the process of the maintaining the version control of the software. It simply describs the flow of the version of the software or the source code developed and the stages that it went through the development. Why it was devloped, imagine a scenario, in which you are writing some code with your collabroator, he knows some part of it and you know some part of it, you dont know which part has already been completed and which part needs to be written. 
+# All the exercises are performed on GPC : Coogle Cloud Computing and will add AWS and Azure also. 
 
-2. Maintaining such communications through email, will be a cumbersome task as that is difficult to follow, not trackable as what and when happen, which eventually lead to the development of the first control version management system: SCCS (Source Code Control System) established by Marc Rochkind in 1972. 
+# 1. Version Control also called a Scource code management is the process of the maintaining the version control of the software. It simply describs the flow of the version of the software or the source code developed and the stages that it went through the development. Why it was devloped, imagine a scenario, in which you are writing some code with your collabroator, he knows some part of it and you know some part of it, you dont know which part has already been completed and which part needs to be written. 
 
-3. Git was developed by Linus Torvalds as distributed version control, meaning of the distributed version control is that you dont have the access to the same code at the same time by multiple developer but you can clone each source of the code written by each developer and see what changes are made through the tag commit. Commit refers to the changes that are made in the code and can be continously updated by each developer for its source code. 
+# 2. Maintaining such communications through email, will be a cumbersome task as that is difficult to follow, not trackable as what and when happen, which eventually lead to the development of the first control version management system: SCCS (Source Code Control System) established by Marc Rochkind in 1972. 
+
+# 3. Git was developed by Linus Torvalds as distributed version control, meaning of the distributed version control is that you dont have the access to the same code at the same time by multiple developer but you can clone each source of the code written by each developer and see what changes are made through the tag commit. Commit refers to the changes that are made in the code and can be continously updated by each developer for its source code. 
   Advantages ---> Fast operation, Local changes, No network needed  
   
-Git panel layout
+# Git panel layout
     ---> Local --> Working directory, Stagging and Local Repository
         ----> Working directory (Local directory where you are writing the code) 
         ----> Stagging (Checking the code before pushing it to the final version, untill you commit, it will be a stagging are and if you still make changes, it will be unstagged)
         ---->  Commit means making the local repository available for the final version. It means you have approved the final changes for release.
         ----> Local repository is the repository where you have saved the final version of the code and once you push it, it will be updated to the remote repository. 
-        
+        ----> Git follows a stagging startegy called as snapshots. Your code while you are in working directory and local repository will be the stage 1 of the snapshot, if you commit it to the remote repository. Now if you keep on making changes and keep commiting to the same file then it is will snapshot (n) times based on the times, you make the commit to the file. 
+
+# Basic setup in Linux and emulating git: 
+
+1. Install git: $ sudo apt-get update && sudo apt-get install git > 1.out & 2 >out.err
+
