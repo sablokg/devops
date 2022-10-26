@@ -24,6 +24,12 @@
 # Basic setup in Linux and emulating git: 
 
 1. Install git: $ sudo apt-get update && sudo apt-get install git > 1.out & 2 >out.err
+2. Install git from the source code
+$ sudo apt-get update
+$ sudo apt-get install libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev asciidoc xmlto docbook2x
+$ git clone https://git.kernel.org/pub/scm/git/git.git
+$ make all doc info prefix=/usr
+$ sudo make install install-doc install-html install-info install-man prefix=/usr
 
 sablokg@instance-1:~$ git --version 
 git version 2.17.1
@@ -105,12 +111,14 @@ sablokg@instance-1:~/gittest$ echo "i am starting git" >> git.txt echoing the te
 
 sablokg@instance-1:~/gittest$ git add git.txt # adding the txt file to the git
 
-sablokg@instance-1:~/gittest$ git commit -m "inital commit: starting git" # commiting the change to the git, see the " " here, as if you will use '' it will not pass, " " allows for the text in the spaces to be taken into account. 
+sablokg@instance-1:~/gittest$ git commit -m "inital commit: starting git" # commiting the change to the git, see the " " here, as if you will use '' it will not pass, " " allows for the text in the spaces to be taken into account. without the commit: value key pair it will not commit. 
 [master (root-commit) 787e17a] inital commit: starting git
  1 file changed, 1 insertion(+)
  create mode 100644 git.txt
- 
- 
+
+
+
+
 
 
 
