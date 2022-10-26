@@ -214,6 +214,42 @@ drwxrwxr-x 2 sablokg sablokg 4096 Oct 26 05:40 .
 drwxrwxr-x 8 sablokg sablokg 4096 Oct 26 10:12 ..
 -rw-rw-r-- 1 sablokg sablokg  240 Oct 26 05:40 exclude
 
+# Branches are a key concept in the git and to understand the concept of the branches, understand one point, you work on yours, i work on mine and later we can merge. So everyone working on their own branch and then laster merging it to form a combined branch. 
+
+In this example below, i am trying to create a branch with the git branch but it failed and the reason for the failure is that you are not insite the directory where your master branch is located.
+sablokg@instance-1:~$ git branch git/new
+fatal: Not a valid object name: 'master'.
+sablokg@instance-1:~$ git branch addition
+fatal: Not a valid object name: 'master'.
+
+I changed the directory to the master branch and then created a new branch named addition
+
+sablokg@instance-1:~$ cd test_git/
+sablokg@instance-1:~/test_git$ git branch addition
+
+Listing out all the branches in the created git and it listed all the branches and showed that the master* is the main brach selected, so any commit you will make it will be pushed to the master branch. 
+
+sablokg@instance-1:~/test_git$ git branch 
+  addition
+* master
+
+Switching to the addition branch and you can see that now the branch has changed to the addition* branch and now whatever commit you will make it will go to the addition branch. 
+
+sablokg@instance-1:~/test_git$ git checkout addition 
+Switched to branch 'addition'
+sablokg@instance-1:~/test_git$ git branch 
+* addition
+  master
+
+Doing all the creation and checking out of the branch in one go: 
+sablokg@instance-1:~/test_git$ git checkout -b new_addition
+Switched to a new branch 'new_addition'
+sablokg@instance-1:~/test_git$ git branch 
+  addition
+  master
+* new_addition
+
+
 
 
 
