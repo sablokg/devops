@@ -1,0 +1,5 @@
+# This repository is for git devops and it will put all the git devops for the DevOPS. 
+
+1. Version Control also called a Scource code management is the process of the maintaining the version control of the software. It simply describs the flow of the version of the software or the source code developed and the stages that it went through the development. Why it was devloped, imagine a scenario, in which you are writing some code with your collabroator, he knows some part of it and you know some part of it, you dont know which part has already been completed and which part needs to be written. 
+
+2. Maintaining such communications through email, will be a cumbersome task as that is difficult to follow, not trackable as what and when happen, which eventually lead to the development of the first control version management system: SCCS (Source Code Control System) established by Marc Rochkind in 1972. 
