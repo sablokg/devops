@@ -57,6 +57,7 @@ adding a user to the git: $ git config --global user.name $username && git confi
   name: "git install" # key: value pair mapping 
 - 
   commands: "apt-get install git"
+...
 
 3. The config command is to list all the configurations in the git, you can see below that the user.email is reflecting the useremail added and the user.name is reflecting the username added. 
 
@@ -67,6 +68,37 @@ sablokg@instance-1:~$ git config --list
    core.filemode=true
    core.bare=false
    core.logallrefupdates=true
+
+4. Now if you want to see the origin of the file in the config then you can list them like: 
+
+sablokg@instance-1:~$ git config --list --show-origin
+file:/home/sablokg/.gitconfig   user.email=sablokg@gmail.com
+file:/home/sablokg/.gitconfig   user.name=sablokg
+file:.git/config        core.repositoryformatversion=0
+file:.git/config        core.filemode=true
+file:.git/config        core.bare=false
+file:.git/config        core.logallrefupdates=true
+
+5. Now lets run the git, check the commands below: 
+
+sablokg@instance-1:~$ mkdir gittest # Making an git directory 
+sablokg@instance-1:~$ cd gittest # changing the directory to gittest
+sablokg@instance-1:~/gittest$ git init # initialising a git with in the directory to start making a working directory
+Initialized empty Git repository in /home/sablokg/gittest/.git/
+sablokg@instance-1:~/gittest$ cd .git # changing into the hidden intitialized git directory 
+sablokg@instance-1:~/gittest/.git$ ls -la # listing all the directory and the hidden files, which includes configs
+total 40
+drwxrwxr-x 7 sablokg sablokg 4096 Oct 26 05:40 .
+drwxrwxr-x 3 sablokg sablokg 4096 Oct 26 05:40 ..
+-rw-rw-r-- 1 sablokg sablokg   23 Oct 26 05:40 HEAD
+drwxrwxr-x 2 sablokg sablokg 4096 Oct 26 05:40 branches
+-rw-rw-r-- 1 sablokg sablokg   92 Oct 26 05:40 config
+-rw-rw-r-- 1 sablokg sablokg   73 Oct 26 05:40 description
+drwxrwxr-x 2 sablokg sablokg 4096 Oct 26 05:40 hooks
+drwxrwxr-x 2 sablokg sablokg 4096 Oct 26 05:40 info
+drwxrwxr-x 4 sablokg sablokg 4096 Oct 26 05:40 objects
+drwxrwxr-x 4 sablokg sablokg 4096 Oct 26 05:40 refs
+
 
 
 
