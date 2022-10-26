@@ -40,7 +40,7 @@ Config file location
 
     In linux the config file is located under the ~/.gitconfig 
 
-adding a user to the git: $ git config --global user.name $username && git config --global user.email $useremail. You can define this in the bash if you have multiple username and password to be defined or you can write a yaml for it in case you are using jenkins. 
+adding a user to the git: $ git config --global user.name $username && git config --global user.email $useremail. You can define this in the bash if you have multiple username and password to be defined or you can write a yaml for it in case you are using ansible. 
 
  !/bin/sh (shebang)
  username = username
@@ -48,9 +48,15 @@ adding a user to the git: $ git config --global user.name $username && git confi
 
  writing a yaml for the git 
 
- ---
-    - hosts: 
-
+---  # Start of the yaml
+-                        # List of sequences 
+  become: true
+  hosts: slave
+  name: play1
+- 
+  name: "git install" # key: value pair mapping 
+- 
+  commands: "apt-get install git"
 
 3. The config command is to list all the configurations in the git, you can see below that the user.email is reflecting the useremail added and the user.name is reflecting the username added. 
 
@@ -62,7 +68,7 @@ sablokg@instance-1:~$ git config --list
    core.bare=false
    core.logallrefupdates=true
 
-   
+
 
  
  
