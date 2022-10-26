@@ -2,6 +2,10 @@
 
 # All the exercises are performed on GPC : Coogle Cloud Computing and will add AWS and Azure also. 
 
+# sablokg@slave2:~$ uname -a 
+# Linux slave2 5.4.0-1092-gcp #101~18.04.1-Ubuntu SMP Mon Oct 17 18:29:06 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+
+
 # 1. Version Control also called a Scource code management is the process of the maintaining the version control of the software. It simply describs the flow of the version of the software or the source code developed and the stages that it went through the development. Why it was devloped, imagine a scenario, in which you are writing some code with your collabroator, he knows some part of it and you know some part of it, you dont know which part has already been completed and which part needs to be written. 
 
 # 2. Maintaining such communications through email, will be a cumbersome task as that is difficult to follow, not trackable as what and when happen, which eventually lead to the development of the first control version management system: SCCS (Source Code Control System) established by Marc Rochkind in 1972. 
@@ -20,4 +24,27 @@
 # Basic setup in Linux and emulating git: 
 
 1. Install git: $ sudo apt-get update && sudo apt-get install git > 1.out & 2 >out.err
+
+sablokg@slave2:~$ git --version 
+git version 2.17.1
+
+2. sablokg@slave2:~$ git config 
+usage: git config [<options>]
+
+Config file location
+    --global              use global config file # Location of the glocabl config 
+    --system              use system config file # Location of the system config 
+    --local               use repository config file # Location of the local config
+    -f, --file <file>     use given config file
+    --blob <blob-id>      read config from given blob object
+
+    In linux the config file is located under the ~/.gitconfig 
+ 
+ adding a user to the git: $ git config --global user.name $username && git config --global user.email $useremail. You can define this in the bash as 
+
+ !/bin/sh (shebang)
+ username = username
+ useremail = useremail
+
+ 3. 
 
