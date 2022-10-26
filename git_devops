@@ -163,6 +163,59 @@ commit b2a25c8106d88324d93be71ee99a0fc3ae87b488 (HEAD -> master)
 Author: sablokg <sablokg@gmail.com>
 Date:   Wed Oct 26 09:55:31 2022 +0000
 
+# To check the status of the git check out below: 
+sablokg@instance-1:~/gittest$ nano add.txt # making a file
+sablokg@instance-1:~/gittest$ git add . # adding a file 
+sablokg@instance-1:~/gittest$ git commit -m "Initial commit" # commiting a file 
+[master d614419] Initial commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 add.txt
+sablokg@instance-1:~/gittest$ git status # checking the status
+On branch master
+nothing to commit, working tree clean
+
+# Commit a file means you are making the changes persistent to the branch, you can commit in following ways: 
+
+# a) Commit with the message 
+  
+sablokg@instance-1:~/gittest$ git commit -m "Initial commit" # dont use '' single quotes as the string has spaces. 
+sablokg@instance-1:~/gittest$ git commit -m "" # empty commit 
+sablokg@instance-1:~/gittest$ git commit -am "Initial commit" # modifiy all the commit 
+
+# Excluding the list of the files that you dont want to add. When you do the init of the git, it automatically generates a exclude list, which is empty and you can fill it accordingly. See below
+
+sablokg@instance-1:~/gittest$ ls -la # entering the git directory and listing all the files, use ls-la as it will list the hiddent files.
+total 20
+drwxrwxr-x  3 sablokg sablokg 4096 Oct 26 10:12 .
+drwxr-xr-x 15 sablokg sablokg 4096 Oct 26 09:50 ..
+drwxrwxr-x  8 sablokg sablokg 4096 Oct 26 10:12 .git
+-rw-rw-r--  1 sablokg sablokg   29 Oct 26 10:12 add.txt
+-rw-rw-r--  1 sablokg sablokg   18 Oct 26 05:52 git.txt
+
+sablokg@instance-1:~/gittest$ cd .git # entering the hidden folder and checking the details
+sablokg@instance-1:~/gittest/.git$ ls -l 
+total 44
+-rw-rw-r--  1 sablokg sablokg   22 Oct 26 10:12 COMMIT_EDITMSG
+-rw-rw-r--  1 sablokg sablokg   23 Oct 26 05:40 HEAD
+drwxrwxr-x  2 sablokg sablokg 4096 Oct 26 05:40 branches
+-rw-rw-r--  1 sablokg sablokg   92 Oct 26 05:40 config
+-rw-rw-r--  1 sablokg sablokg   73 Oct 26 05:40 description
+drwxrwxr-x  2 sablokg sablokg 4096 Oct 26 05:40 hooks
+-rw-rw-r--  1 sablokg sablokg  209 Oct 26 10:12 index
+drwxrwxr-x  2 sablokg sablokg 4096 Oct 26 05:40 info
+drwxrwxr-x  3 sablokg sablokg 4096 Oct 26 05:52 logs
+drwxrwxr-x 13 sablokg sablokg 4096 Oct 26 10:12 objects
+drwxrwxr-x  4 sablokg sablokg 4096 Oct 26 05:40 refs
+
+sablokg@instance-1:~/gittest/.git$ cd info # entering the info folder and there you will find the exclude list, in this you can add the extension such as *.tmp, *.crap or anything, which you want to exclude. 
+sablokg@instance-1:~/gittest/.git/info$ ls -la
+total 12
+drwxrwxr-x 2 sablokg sablokg 4096 Oct 26 05:40 .
+drwxrwxr-x 8 sablokg sablokg 4096 Oct 26 10:12 ..
+-rw-rw-r-- 1 sablokg sablokg  240 Oct 26 05:40 exclude
+
+
+
 
 
 
