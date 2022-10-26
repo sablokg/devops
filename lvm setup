@@ -47,16 +47,8 @@ $ sudo usermod -a -G dba_users user
 #### formatting and binding the partition to the mount point 
 
 $ lsblk --fs dba_storage
-
-$ lsblk --fs dba_storage
-
 create a mount point 
 mkdir --parents mount-point
-
-
-
-
-
 
 #creating an user in the linux environment after the disk installation and mounting 
 
