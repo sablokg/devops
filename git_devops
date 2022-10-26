@@ -46,9 +46,9 @@ usage: git config [<options>]
  username = username
  useremail = useremail
 
-# writing a yaml for the git 
+# writing a yaml for the git installation 
 
----  # Start of the yaml
+---  # Start of the yaml for the git installation 
 -                        # List of sequences 
   become: true
   hosts: slave
@@ -90,14 +90,27 @@ sablokg@instance-1:~/gittest/.git$ ls -la # listing all the directory and the hi
 total 40
 drwxrwxr-x 7 sablokg sablokg 4096 Oct 26 05:40 .
 drwxrwxr-x 3 sablokg sablokg 4096 Oct 26 05:40 ..
--rw-rw-r-- 1 sablokg sablokg   23 Oct 26 05:40 HEAD
+-rw-rw-r-- 1 sablokg sablokg   23 Oct 26 05:40 HEAD # reference to the current branch
 drwxrwxr-x 2 sablokg sablokg 4096 Oct 26 05:40 branches
--rw-rw-r-- 1 sablokg sablokg   92 Oct 26 05:40 config
--rw-rw-r-- 1 sablokg sablokg   73 Oct 26 05:40 description
+-rw-rw-r-- 1 sablokg sablokg   92 Oct 26 05:40 config # contains configuration 
+-rw-rw-r-- 1 sablokg sablokg   73 Oct 26 05:40 description # contains description 
 drwxrwxr-x 2 sablokg sablokg 4096 Oct 26 05:40 hooks
 drwxrwxr-x 2 sablokg sablokg 4096 Oct 26 05:40 info
 drwxrwxr-x 4 sablokg sablokg 4096 Oct 26 05:40 objects
 drwxrwxr-x 4 sablokg sablokg 4096 Oct 26 05:40 refs
+
+6. Starting the commit to the git: 
+
+sablokg@instance-1:~/gittest$ echo "i am starting git" >> git.txt echoing the text in bash and storing the file to the txt
+
+sablokg@instance-1:~/gittest$ git add git.txt # adding the txt file to the git
+
+sablokg@instance-1:~/gittest$ git commit -m "inital commit: starting git" # commiting the change to the git, see the " " here, as if you will use '' it will not pass, " " allows for the text in the spaces to be taken into account. 
+[master (root-commit) 787e17a] inital commit: starting git
+ 1 file changed, 1 insertion(+)
+ create mode 100644 git.txt
+ 
+ 
 
 
 
