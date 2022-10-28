@@ -306,6 +306,20 @@ index ac0d936..f666ad2 100644
  
  This is telling me that i made the changes to this file. I made the changes in the file3 (minus sign) which are reflected in the file3 (plus sign)
 
+# Cloning a specific branch in git: Cloning a specific branch in git is cloning a specific repository from remote and adding it your local repository. You can clone any branch of the repository 
+
+git clone --single-branch --branch master site_address 
+
+and then check the branch 
+
+cd site_address
+git branch 
+
+Now if you want to clone a specific branch of the git then you can clone using 
+
+git checkout --track origin/dev # This will change the branch. 
+
+# Renaming a branch, 
 
 
 
