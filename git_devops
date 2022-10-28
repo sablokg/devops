@@ -354,17 +354,8 @@ sablokg@instance-1:~$ git clean -d -i unless you are sure, you can use this to b
   $ sablokg@instance-1:~$ git branch remote show reponame # This will list all the branches on the remote repository and you can pull any of the branch.
   $ sablokg@instance-1:~$ git fetch reponame branchname 
 
+  Here if you will use the reponame as origin then it will branch everything to origin. 
+
 All work done on Google cloud computing platform. 
 
 Cheers Gaurav
-
-
-
-
-
-
-
-
-
- 
- 
