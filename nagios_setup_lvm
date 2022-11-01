@@ -117,15 +117,13 @@ Nagios::Monitoring::Plugin::Threshold	class for handling Nagios::Monitoring::Plu
 
 $ systemctl restart httpd.service
 $ systemctl start nagios.service
-$ systemctl start nagios.service
-$ systemctl start nagios.service
-start nagios service
-nagios service status 
+$ start nagios service
+$ nagios service status 
 
 # Two ways to start firewall, either in the system enabled or the cloud enabled. 
 
-firewall-cmd --permanent --zone=public --add-port=80/tcp
-firewall-cmd --reload
+$ firewall-cmd --permanent --zone=public --add-port=80/tcp
+$ firewall-cmd --reload
 or 
 
 # google cloud enabled 
