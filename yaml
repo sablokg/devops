@@ -1,0 +1,269 @@
+# Rules to be remember for YAML
+# Yaml (YAML Ain't Markup Language) is configuration management lanaguage for ansible and other CI and CD roles and integration. 
+# it is a data serialization lanaguage.
+# Intendentation in Yaml is the same as Python which is very important. 
+# It supports one direction processing. 
+# Each code in YAML starts with ---. 
+# To correct the lint in yAML, clone this repo:  ![YAML Lint] (https://github.com/adrienverge/yamllint)
+# YAML is case sensitive as python 
+# You can save the file extension as .yaml or .yml in ansible
+# TABS are not allowed but spaces are permitted
+# Provide comments as #
+# Members are listed as -
+# Listed members in [] and seprate by , such [ this is a reporsitory, please feel free to use it]
+# Making an array, use {} and : such as {age: 41, method: scalar}
+# : and , as list seprator 
+# ! and !! for URLs
+# string are separated using ""
+# commenting start with # as in many other lanuage and it can be a single line or in the multiple line commenting with #. 
+# You cannot # comment with in a block but you can write a block comment (see line 109-113)
+# In YAMl, simply remember that 
+# Follow: Tutorialspoint.com & ![Cloubees] (https://www.cloudbees.com/blog/yaml-tutorial-everything-you-need-get-started)
+# You can also learn a quick ansible YAML at: ![Ansible] (https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html)
+# You can also learn a quick ansible YAML at : ! [Ansible] (https://www.javatpoint.com/ansible-yaml)
+
+**************************************************
+# Start loading some examples in YAML as 
+    yaml.load ('2.4.4')
+    2.4.4 same as python string definition 
+
+# To load a list like text, name, city, column in YAML
+    yaml.load ('''
+    -text 
+    -name
+    -city
+    -column
+    '''
+    )
+    ['text', 'name', 'city', 'column']
+**************************************************
+
+# Text defining 
+ 
+ # a) Block format 
+---
+   - name
+   - list
+   - Title
+
+# b) Inline format
+---
+   [name, list, title]
+
+# c) Folded text 
+- {name: list, title: ansible} can also be defined as
+- name: list
+- title: ansible
+
+# d) You can combine the inline format as well as the folded text in one 
+name: [list, text, place]
+women: 
+     - list 
+     - text
+     - place
+
+### Check this block mapping in yaml (tutorialspoint.com, i added the line wise explanation)
+
+--- !clarkevans.com/^invoice # URL starting with ! 
+invoice: 34843
+date   : 2001-01-23
+bill-to: &id001
+   given  : Chris
+   family : Dumars
+   address:
+      lines: | # block with multiple lines but this will be read in multiple lines see the example below
+            458 Walkman Dr.
+            Suite #292
+      city    : Royal Oak
+      state   : MI
+      postal  : 48046
+ship-to: *id001
+product: #### multiple block as this is important in ansible
+    - sku         : BL394D
+      quantity    : 4
+      description : Basketball
+      price       : 450.00
+   - sku         : BL4438H
+      quantity    : 1
+      description : Super Hoop
+      price       : 2392.00
+tax  : 251.42
+total: 4443.52
+comments: > ## commenting with > is the same as | but it will be read as a string see the example below
+    Late afternoon is best.
+    Backup contact is Nancy
+    Billsmer @ 338-4338.
+
+# block reading with |
+     lines: | # block with multiple lines but this will be read in multiple lines see the example below
+            458 Walkman Dr.
+            Suite #292
+# will read as 
+    458 Walkman Dr.
+        Suite #292
+# block reading with > 
+    comments: > 
+    Late afternoon is best.
+    Backup contact is Nancy
+    Billsmer @ 338-4338.
+# will read as 
+    comments: ate afternoon is best.Backup contact is Nancy.Billsmer @ 338-4338.
+
+### Commenting with a block 
+age: # this defines the age
+   - 24
+title: # this defines the title 
+   - list
+
+### Defining a scalar and sequences, map the block with - and : , see the example below with the exaplantion
+
+- name # These are seqeunces of scalars
+- title # These are seqeunces of scalars
+- list # These are seqeunces of scalars
+
+age: 24 # Mapping of scalar to scalar
+hr: 87 # Mapping of scalar to scalar
+avg: 56 # Mapping of scalar to scalar
+
+names: # Mapping of scalars to seqeunces: 
+  - title # these are sequences and listed with in a scalar with -
+  - list # these are sequences and listed with in a scalar with -
+  - origin # these are sequences and listed with in a scalar with -
+  - playlist # these are sequences and listed with in a scalar with -
+
+## Collection is a combination of the scalar and seqeunces and can have sequence to scalar mapping or the scalar to scalar mapping
+## Important concept "Seqeunces start with -" & Scalar start with : 
+
+# Sequences 
+- name
+- title
+- list
+
+# Scalar 
+age: 24
+time: 24
+
+# Combination of sequences and scalar is called as collection
+--- # start of the collection 
+ - 
+name: Mark Joseph # Mapping of the sequence 
+hr: 87 # Mapping of scalar to scalar 
+avg: 0.278 # Mapping of scalar to scalar 
+... # end of the collection 
+
+# Defining complex structures: A complex structure can be defined with a dash, colon and question mark. 
+
+- 2022-10-23 # Defining a sequence 
+? [ name, list, title ] # Defining a complex structure
+: [ 2022-10-23, 2022-10-22, 2022-10-21] # Defining a complex structure'
+
+# scalar and tags in YAML: 
+# There are simple to remember scalar in YAML. | (pipe scalar) will convert the text into a single line (see line 94-100), whereas the > scalar will not wrap the line text (see line 101-107). 
+
+# Number and Miscellanous tags in the YAML 
+canonical: 12345 or 1.23015e+3
+decimal: +12,345
+sexagecimal: 3:25:45
+octal: 014
+hexadecimal: 0xC
+exponential: 12.3015e+02
+sexagecimal: 20:30.15
+fixed: 1,230.15
+negative infinity: -.inf
+not a number: .NaN
+null: ~
+true: y
+false: n
+string: '12345'
+become: true (in case of sudo, use become)
+
+# complex YAML: Here look at the <<: *.defaults which is defined as the functional code means there is no need to write the same code again and the defaults from the first connection. 
+defaults: &defaults 
+   adapter:  postgres
+   host:     localhost
+development:
+   database: myapp_development
+   <<: *defaults
+test:
+   database: myapp_test
+   <<: *defaults
+
+# Understanding sequence, mapping and scalar with a functional code (tutorialspoint.com)
+# the below example is an example of seqeunce, however with in the example, line 191:194 is a mapping
+product:
+   - sku         : BL394D
+     quantity    : 4
+     description : Football
+     price       : 450.00
+   - sku         : BL4438H
+     quantity    : 1
+     description : Super Hoop
+     price       : 2392.00
+
+# Indication charatcer one example and line wise explanation 
+
+--- # open the connection 
+!!map {
+   ? !!str "sequence" # ? represents a mapping key
+   : !!seq [ # : represents a mapping value ([ open square bracket open a flow sequence)
+      !!str "one", !!str "two"
+   ], # , represents a flow collection entry (] close bracket marks the end of the flow seqeunce)
+   ? !!str "mapping"
+   : !!map { # { marks the start of the flow mapping
+      ? !!str "sky" : !!str "blue",
+      ? !!str "sea" : !!str "green",
+   } # } marks the end of the flow mapping
+}
+# This represents
+# only comments.
+---
+!!map1 {
+   ? !!str "anchored" # "" Style showing double quoted flow scalar
+   : !local &A1 "value", # & represents the node anchor property
+   ? !!str "alias"
+   : *A1, # * denotes alias node
+}
+!!str "text" # ! repesents a nodes tag 
+
+In addition to above, % represents the directive, | is a literal block scalar and > is a folded block scalar
+
+# Chomp in YAML: Chomp in YAMP is simple and is defined by strip, clip and keep. Chomp is not frequently used in DevOPS
+
+strip: |- # Strip the text 
+   list
+clip: | # Clip the text 
+   list
+keep: |+ # keep the text
+   list
+
+# Defining string with special charatcters : In case of defining string with special characters, you should enclose them with " " so that the special character can be read
+
+---
+str: "learn yaml 3\n"
+str: learn yaml 3
+
+# Final touches to YAML: YAML is easy to code, simply understand the syntax: 
+
+--- # Start with the --- (3 hypen)
+   - 
+   student1: "anyone"  # (Make a key value pair)
+   hobbies:   #( Define a key)
+    - music  # (Make a list)
+    - reading  
+    - dancing  
+...
+  # OR Make many key value pairs or the list 
+
+   student1: "anyone"  # (Make a key value pair)
+   identity: "student"
+   class: 3
+   hobbies:   #( Define a key)
+   - music  # (Make a list)
+   - reading  
+   - dancing
+   subjectscores: 
+   - maths: 30
+   - anything: ~ #(Defining a null value, either ~ or null)
+...   
+
+I end this YAML training here as this is enough to get all the ansible get going and unless you pound upon JSON, you dont need to do the YAML to JSON tags. 
