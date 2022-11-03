@@ -1,19 +1,19 @@
-# This repository is for git devops and it will put all the git devops for the DevOPS. 
 
-# All the exercises are performed on GPC : Coogle Cloud Computing and will add AWS and Azure also. 
+This article is for git devops. All the exercises are performed on GPC : Google Cloud Computing.  
 
-# sablokg@slave2:~$ uname -a 
-# Linux slave2 5.4.0-1092-gcp #101~18.04.1-Ubuntu SMP Mon Oct 17 18:29:06 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+```
+ sablokg@slave2:~$ uname -a 
+ Linux slave2 5.4.0-1092-gcp 101~18.04.1-Ubuntu SMP Mon Oct 17 18:29:06 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+``` 
 
+ 1. Version Control also called a Scource code management is the process of the maintaining the version control of the software. It simply describs the flow of the version of the software or the source code developed and the stages that it went through the development. Why it was devloped, imagine a scenario, in which you are writing some code with your collabroator, he knows some part of it and you know some part of it, you dont know which part has already been completed and which part needs to be written. 
 
-# 1. Version Control also called a Scource code management is the process of the maintaining the version control of the software. It simply describs the flow of the version of the software or the source code developed and the stages that it went through the development. Why it was devloped, imagine a scenario, in which you are writing some code with your collabroator, he knows some part of it and you know some part of it, you dont know which part has already been completed and which part needs to be written. 
+ 2. Maintaining such communications through email, will be a cumbersome task as that is difficult to follow, not trackable as what and when happen, which eventually lead to the development of the first control version management system: SCCS (Source Code Control System) established by Marc Rochkind in 1972. 
 
-# 2. Maintaining such communications through email, will be a cumbersome task as that is difficult to follow, not trackable as what and when happen, which eventually lead to the development of the first control version management system: SCCS (Source Code Control System) established by Marc Rochkind in 1972. 
-
-# 3. Git was developed by Linus Torvalds as distributed version control, meaning of the distributed version control is that you dont have the access to the same code at the same time by multiple developer but you can clone each source of the code written by each developer and see what changes are made through the tag commit. Commit refers to the changes that are made in the code and can be continously updated by each developer for its source code. 
+ 3. Git was developed by Linus Torvalds as distributed version control, meaning of the distributed version control is that you dont have the access to the same code at the same time by multiple developer but you can clone each source of the code written by each developer and see what changes are made through the tag commit. Commit refers to the changes that are made in the code and can be continously updated by each developer for its source code. 
   Advantages ---> Fast operation, Local changes, No network needed  
   
-# Git panel layout
+ Git panel layout
     ---> Local --> Working directory, Stagging and Local Repository
         ----> Working directory (Local directory where you are writing the code) 
         ----> Stagging (Checking the code before pushing it to the final version, untill you commit, it will be a stagging are and if you still make changes, it will be unstagged)
@@ -21,54 +21,65 @@
         ----> Local repository is the repository where you have saved the final version of the code and once you push it, it will be updated to the remote repository. 
         ----> Git follows a stagging startegy called as snapshots. Your code while you are in working directory and local repository will be the stage 1 of the snapshot, if you commit it to the remote repository. Now if you keep on making changes and keep commiting to the same file then it is will snapshot (n) times based on the times, you make the commit to the file. 
 
-# Basic setup in Linux and emulating git: 
+ Basic setup in Linux and emulating git: 
 
-1. Install git: $ sudo apt-get update && sudo apt-get install git > 1.out & 2 >out.err
+1. Install git: 
+``` 
+$ sudo apt-get update && sudo apt-get install git > 1.out & 2 >out.err
+``` 
 2. Install git from the source code
+``` 
 $ sudo apt-get update
 $ sudo apt-get install libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev asciidoc xmlto docbook2x
 $ git clone https://git.kernel.org/pub/scm/git/git.git
 $ make all doc info prefix=/usr
 $ sudo make install install-doc install-html install-info install-man prefix=/usr
-
+``` 
+``` 
 sablokg@instance-1:~$ git --version 
 git version 2.17.1
-
-2. sablokg@instance-1:~$ git config 
+``` 
+``` 
+sablokg@instance-1:~$ git config 
 usage: git config [<options>]
-# Config file location
-    --global              use global config file # Location of the glocabl config 
-    --system              use system config file # Location of the system config 
-    --local               use repository config file # Location of the local config
+ Config file location
+    --global              use global config file  Location of the glocabl config 
+    --system              use system config file  Location of the system config 
+    --local               use repository config file  Location of the local config
     -f, --file <file>     use given config file
     --blob <blob-id>      read config from given blob object
     In linux the config file is located under the ~/.gitconfig 
-
-# adding a user to the git: $ git config --global user.name $username && git config --global user.email $useremail. You can define this in the bash if you have multiple username and password to be defined or you can write a yaml for it in case you are using ansible. 
-
+``` 
+adding a user to the git: 
+``` 
+$ git config --global user.name $username && git config --global user.email $useremail. 
+``` 
+You can define this in the bash if you have multiple username and password to be defined or you can write a yaml for it in case you are using ansible. 
+``` 
  !/bin/sh (shebang)
  username = username
  useremail = useremail
-
-# writing a yaml for the git installation 
-
----  # Start of the yaml for the git installation 
--                        # List of sequences 
+``` 
+ writing a yaml for the git installation 
+``` 
+---   Start of the yaml for the git installation 
+-                         List of sequences 
   become: true
   hosts: slave
   name: play1
 - 
-  name: "git install" # key: value pair mapping 
+  name: "git install"  key: value pair mapping 
 - 
   commands: "apt-get install git"
 ...
-
-3. The config command is to list all the configurations in the git, you can see below that the user.email is reflecting the useremail added and the user.name is reflecting the username added. You can list all the config and also set a default alias and editor for config
-
+``` 
+3. The config command is to list all the configurations in the git, you can see below that the user.email is reflecting the user-email added and the user.name is reflecting the username added. You can list all the config and also set a default alias and editor for config
+``` 
 sablokg@instance-1:~$ git config --list
-sablokg@instance-1:~$ git config --global core.editor "nano" # setting the deafult editor as nano in the git. 
-sablokg@instance-1:~$ git config --global alias.co commit # adding an alias for the commit as co. 
-
+sablokg@instance-1:~$ git config --global core.editor "nano"  setting the default editor as nano in the git. 
+sablokg@instance-1:~$ git config --global alias.co commit  adding an alias for the commit as co. 
+``` 
+``` 
 sablokg@instance-1:~$ git config --list 
    user.email=sablokg@gmail.com
    user.name=sablokg
@@ -76,9 +87,9 @@ sablokg@instance-1:~$ git config --list
    core.filemode=true
    core.bare=false
    core.logallrefupdates=true
-
+``` 
 4. Now if you want to see the origin of the file in the config then you can list them like: 
-
+``` 
 sablokg@instance-1:~$ git config --list --show-origin
 file:/home/sablokg/.gitconfig   user.email=sablokg@gmail.com
 file:/home/sablokg/.gitconfig   user.name=sablokg
@@ -86,58 +97,71 @@ file:.git/config        core.repositoryformatversion=0
 file:.git/config        core.filemode=true
 file:.git/config        core.bare=false
 file:.git/config        core.logallrefupdates=true
-
+``` 
 5. Now lets run the git, check the commands below: 
-sablokg@instance-1:~$ mkdir gittest # Making an git directory 
-sablokg@instance-1:~$ cd gittest # changing the directory to gittest
-sablokg@instance-1:~/gittest$ git init # initialising a git with in the directory to start making a working directory
+``` 
+sablokg@instance-1:~$ mkdir gittest  Making an git directory 
+sablokg@instance-1:~$ cd gittest  changing the directory to gittest
+sablokg@instance-1:~/gittest$ git init  initialising a git with in the directory to start making a working directory
 Initialized empty Git repository in /home/sablokg/gittest/.git/
-sablokg@instance-1:~/gittest$ cd .git # changing into the hidden intitialized git directory 
-sablokg@instance-1:~/gittest/.git$ ls -la # listing all the directory and the hidden files, which includes configs
+sablokg@instance-1:~/gittest$ cd .git  changing into the hidden intitialized git directory 
+sablokg@instance-1:~/gittest/.git$ ls -la  listing all the directory and the hidden files, which includes configs
 total 40
 drwxrwxr-x 7 sablokg sablokg 4096 Oct 26 05:40 .
 drwxrwxr-x 3 sablokg sablokg 4096 Oct 26 05:40 ..
--rw-rw-r-- 1 sablokg sablokg   23 Oct 26 05:40 HEAD # reference to the current branch
+-rw-rw-r-- 1 sablokg sablokg   23 Oct 26 05:40 HEAD  reference to the current branch
 drwxrwxr-x 2 sablokg sablokg 4096 Oct 26 05:40 branches
--rw-rw-r-- 1 sablokg sablokg   92 Oct 26 05:40 config # contains configuration 
--rw-rw-r-- 1 sablokg sablokg   73 Oct 26 05:40 description # contains description 
+-rw-rw-r-- 1 sablokg sablokg   92 Oct 26 05:40 config  contains configuration 
+-rw-rw-r-- 1 sablokg sablokg   73 Oct 26 05:40 description  contains description 
 drwxrwxr-x 2 sablokg sablokg 4096 Oct 26 05:40 hooks
 drwxrwxr-x 2 sablokg sablokg 4096 Oct 26 05:40 info
 drwxrwxr-x 4 sablokg sablokg 4096 Oct 26 05:40 objects
 drwxrwxr-x 4 sablokg sablokg 4096 Oct 26 05:40 refs
-
+``` 
 6. Starting the commit to the git: 
+``` 
 sablokg@instance-1:~/gittest$ echo "i am starting git" >> git.txt echoing the text in bash and storing the file to the txt
-sablokg@instance-1:~/gittest$ git add git.txt # adding the txt file to the git
-sablokg@instance-1:~/gittest$ git commit -m "inital commit: starting git" # commiting the change to the git, see the " " here, as if you will use '' it will not pass, " " allows for the text in the spaces to be taken into account. without the commit: value key pair it will not commit. 
+sablokg@instance-1:~/gittest$ git add git.txt  adding the txt file to the git
+sablokg@instance-1:~/gittest$ git commit -m "inital commit: starting git"  commiting the change to the git, see the " " here, as if you will use '' it will not pass, " " allows for the text in the spaces to be taken into account. without the commit: value key pair it will not commit. 
 [master (root-commit) 787e17a] inital commit: starting git
  1 file changed, 1 insertion(+)
  create mode 100644 git.txt
-
- 7. Lets start with a detailed git: Git uses the SHA-1 encryption for commit made, means it produces a 160-bit hash value. Below you will see a working example of the commit and what happens when we commit without adding the git. 
-
-# Making a directory 
+``` 
+7. Lets start with a detailed git: Git uses the SHA-1 encryption for commit made, means it produces a 160-bit hash value. Below you will see a working example of the commit and what happens when we commit without adding the git. Making a directory 
+``` 
 sablokg@instance-1:~$ mkdir test_git 
 sablokg@instance-1:~$ cd test_git 
-# Initializing a directory 
+ ``` 
+Initializing a directory 
+``` 
 sablokg@instance-1:~/test_git$ git init 
+``` 
 Initialized empty Git repository in /home/sablokg/test_git/.git/
-# Copying the text files to the directory 
+Copying the text files to the directory 
+``` 
 sablokg@instance-1:~/test_git$ cp -r ../*.txt ./
-# Checking the directory contents 
+```  
+Checking the directory contents 
+``` 
 sablokg@instance-1:~/test_git$ ls -l 
 total 8
 -rw-rw-r-- 1 sablokg sablokg 21 Oct 26 09:51 file3.txt
 -rw-rw-r-- 1 sablokg sablokg 21 Oct 26 09:51 file4.txt
-# Adding a README file
+ ``` 
+Adding a README file
+``` 
 sablokg@instance-1:~/test_git$ nano README.md
-# Listing all the files in the git directory 
+ ``` 
+Listing all the files in the git directory 
+``` 
 sablokg@instance-1:~/test_git$ ls -l 
 total 12
 -rw-rw-r-- 1 sablokg sablokg 19 Oct 26 09:51 README.md
 -rw-rw-r-- 1 sablokg sablokg 21 Oct 26 09:51 file3.txt
 -rw-rw-r-- 1 sablokg sablokg 21 Oct 26 09:51 file4.txt
-# Now here i commit the files directly to the git without adding the files, so you can see that it is showing that the files are untracked, means it doesnt know which branch to add. 
+``` 
+Now here i commit the files directly to the git without adding the files, so you can see that it is showing that the files are untracked, means it doesn't know which branch to add. 
+``` 
 sablokg@instance-1:~/test_git$ git commit -m "Initial commit"
 On branch master
 Initial commit
@@ -146,51 +170,60 @@ Untracked files:
         file3.txt
         file4.txt
 nothing added to commit but untracked files present
-# Now i do the proper commit by adding the files 
-sablokg@instance-1:~/test_git$ git add . # adding the git. 
-# Now commiting the git after adding.You can see that it says three insertions have been made to the git.  
+``` 
+Now i do the proper commit by adding the files 
+``` 
+sablokg@instance-1:~/test_git$ git add .  adding the git. 
+ Now commiting the git after adding.You can see that it says three insertions have been made to the git.  
 sablokg@instance-1:~/test_git$ git commit -m "Initial commit"
 [master (root-commit) b2a25c8] Initial commit
  3 files changed, 3 insertions(+)
  create mode 100644 README.md
  create mode 100644 file3.txt
  create mode 100644 file4.txt
-# Now to check further, check the git log and you can see who made the insertion, when and to which branch. 
+``` 
+Now to check further, check the git log and you can see who made the insertion, when and to which branch. 
+``` 
 sablokg@instance-1:~/test_git$ git log 
 commit b2a25c8106d88324d93be71ee99a0fc3ae87b488 (HEAD -> master)
 Author: sablokg <sablokg@gmail.com>
 Date:   Wed Oct 26 09:55:31 2022 +0000
-
-# To check the status of the git check out below: 
-sablokg@instance-1:~/gittest$ nano add.txt # making a file
-sablokg@instance-1:~/gittest$ git add . # adding a file 
-sablokg@instance-1:~/gittest$ git commit -m "Initial commit" # commiting a file 
+``` 
+8. To check the status of the git check out below: 
+``` 
+sablokg@instance-1:~/gittest$ nano add.txt  making a file
+sablokg@instance-1:~/gittest$ git add .  adding a file 
+sablokg@instance-1:~/gittest$ git commit -m "Initial commit"  commiting a file 
 [master d614419] Initial commit
  1 file changed, 1 insertion(+)
  create mode 100644 add.txt
-sablokg@instance-1:~/gittest$ git status # checking the status
+sablokg@instance-1:~/gittest$ git status  checking the status
 On branch master
 nothing to commit, working tree clean
+``` 
+9. Commit a file means you are making the changes persistent to the branch, you can commit in following ways: 
 
-# Commit a file means you are making the changes persistent to the branch, you can commit in following ways: 
-
-# a) Commit with the message 
-  
-sablokg@instance-1:~/gittest$ git commit -m "Initial commit" # dont use '' single quotes as the string has spaces. 
-sablokg@instance-1:~/gittest$ git commit -m "" # empty commit 
-sablokg@instance-1:~/gittest$ git commit -am "Initial commit" # modifiy all the commit 
-
-# Excluding the list of the files that you dont want to add. When you do the init of the git, it automatically generates a exclude list, which is empty and you can fill it accordingly. See below
-
-sablokg@instance-1:~/gittest$ ls -la # entering the git directory and listing all the files, use ls-la as it will list the hiddent files.
+ a) Commit with the message 
+``` 
+sablokg@instance-1:~/gittest$ git commit -m "Initial commit"  dont use '' single quotes as the string has spaces. 
+sablokg@instance-1:~/gittest$ git commit -m ""  empty commit 
+sablokg@instance-1:~/gittest$ git commit -am "Initial commit"  modifiy all the commit 
+``` 
+Excluding the list of the files that you dont want to add. When you do the init of the git, it automatically generates a exclude list, which is empty and you can fill it accordingly. See below
+``` 
+sablokg@instance-1:~/gittest$ ls -la  entering the git directory and listing all the files, use ls-la as it will list the hidden files.
 total 20
 drwxrwxr-x  3 sablokg sablokg 4096 Oct 26 10:12 .
 drwxr-xr-x 15 sablokg sablokg 4096 Oct 26 09:50 ..
 drwxrwxr-x  8 sablokg sablokg 4096 Oct 26 10:12 .git
 -rw-rw-r--  1 sablokg sablokg   29 Oct 26 10:12 add.txt
 -rw-rw-r--  1 sablokg sablokg   18 Oct 26 05:52 git.txt
-
-sablokg@instance-1:~/gittest$ cd .git # entering the hidden folder and checking the details
+``` 
+``` 
+sablokg@instance-1:~/gittest$ cd .git  
+entering the hidden folder and checking the details
+``` 
+``` 
 sablokg@instance-1:~/gittest/.git$ ls -l 
 total 44
 -rw-rw-r--  1 sablokg sablokg   22 Oct 26 10:12 COMMIT_EDITMSG
@@ -204,54 +237,72 @@ drwxrwxr-x  2 sablokg sablokg 4096 Oct 26 05:40 info
 drwxrwxr-x  3 sablokg sablokg 4096 Oct 26 05:52 logs
 drwxrwxr-x 13 sablokg sablokg 4096 Oct 26 10:12 objects
 drwxrwxr-x  4 sablokg sablokg 4096 Oct 26 05:40 refs
+``` 
+```
+sablokg@instance-1:~/gittest/.git$ cd info  
+```
+entering the info folder and there you will find the exclude list, in this you can add the extension such as *.tmp, *.crap or anything, which you want to exclude. 
 
-sablokg@instance-1:~/gittest/.git$ cd info # entering the info folder and there you will find the exclude list, in this you can add the extension such as *.tmp, *.crap or anything, which you want to exclude. 
+```
 sablokg@instance-1:~/gittest/.git/info$ ls -la
 total 12
 drwxrwxr-x 2 sablokg sablokg 4096 Oct 26 05:40 .
 drwxrwxr-x 8 sablokg sablokg 4096 Oct 26 10:12 ..
 -rw-rw-r-- 1 sablokg sablokg  240 Oct 26 05:40 exclude
+``` 
+10. Branches are a key concept in the git and to understand the concept of the branches, understand one point, you work on yours, i work on mine and later we can merge. So everyone working on their own branch and then laster merging it to form a combined branch. 
 
-# Branches are a key concept in the git and to understand the concept of the branches, understand one point, you work on yours, i work on mine and later we can merge. So everyone working on their own branch and then laster merging it to form a combined branch. 
-
-In this example below, i am trying to create a branch with the git branch but it failed and the reason for the failure is that you are not insite the directory where your master branch is located.
+In this example below, i am trying to create a branch with the git branch but it failed and the reason for the failure is that you are not inside the directory where your master branch is located.
+``` 
 sablokg@instance-1:~$ git branch git/new
 fatal: Not a valid object name: 'master'.
 sablokg@instance-1:~$ git branch addition
 fatal: Not a valid object name: 'master'.
-
+``` 
 I changed the directory to the master branch and then created a new branch named addition
-
+``` 
 sablokg@instance-1:~$ cd test_git/
 sablokg@instance-1:~/test_git$ git branch addition
-
+``` 
 Listing out all the branches in the created git and it listed all the branches and showed that the master* is the main brach selected, so any commit you will make it will be pushed to the master branch. 
 
+``` 
 sablokg@instance-1:~/test_git$ git branch 
   addition
 * master
+``` 
 
-# Switching to the addition branch and you can see that now the branch has changed to the addition* branch and now whatever commit you will make it will go to the addition branch. 
+11. Switching to the addition branch and you can see that now the branch has changed to the addition* branch and now whatever commit you will make it will go to the addition branch. 
 
+``` 
 sablokg@instance-1:~/test_git$ git checkout addition 
 Switched to branch 'addition'
 sablokg@instance-1:~/test_git$ git branch 
 * addition
   master
+``` 
 
 Doing all the creation and checking out of the branch in one go: 
+
+``` 
 sablokg@instance-1:~/test_git$ git checkout -b new_addition
 Switched to a new branch 'new_addition'
 sablokg@instance-1:~/test_git$ git branch 
   addition
   master
 * new_addition
+```
 
-# To see which changes are made in the log: Remember this should be executed with in the git directory you made.
+To see which changes are made in the log: Remember this should be executed with in the git directory you made.
+
+``` 
 sablokg@instance-1:~/test_git$ git log --pretty=oneline
 b2a25c8106d88324d93be71ee99a0fc3ae87b488 (HEAD -> new_addition, master, addition) Initial commit. 
+``` 
 
-# To see the details log: Remember this should be executed with in the git directory you made.
+To see the details log: Remember this should be executed with in the git directory you made.
+
+``` 
 sablokg@instance-1:~/gittest$ git log 
 commit e841188e716ba53107af4cc642355df928c8c224 (HEAD -> master)
 Author: sablokg <sablokg@gmail.com>
@@ -265,8 +316,11 @@ commit 787e17ab050fe274d677bec8d0f9dd99157af70f
 Author: sablokg <sablokg@gmail.com>
 Date:   Wed Oct 26 05:52:56 2022 +0000
     inital commit: starting git
+``` 
 
-# To see the log in graphs: Remember this should be executed with in the git directory you made.
+To see the log in graphs: Remember this should be executed with in the git directory you made.
+
+``` 
 sablokg@instance-1:~/gittest$ git log --graph
 * commit e841188e716ba53107af4cc642355df928c8c224 (HEAD -> master)
 | Author: sablokg <sablokg@gmail.com>
@@ -280,9 +334,11 @@ sablokg@instance-1:~/gittest$ git log --graph
   Author: sablokg <sablokg@gmail.com>
   Date:   Wed Oct 26 05:52:56 2022 +0000
       inital commit: starting git
+``` 
 
-# Next is how to check for the difference in the changes made. This can be done using the diff command. 
+12. Next is how to check for the difference in the changes made. This can be done using the diff command. 
 
+``` 
 sablokg@instance-1:~/test_git$ git diff 
 diff --git a/file3.txt b/file3.txt
 index ac0d936..f666ad2 100644
@@ -291,73 +347,91 @@ index ac0d936..f666ad2 100644
 @@ -1 +1 @@
 -file3.txt devopsdemo
 +i created this file3file3.txt devopsdemo
- 
- This is telling me that i made the changes to this file. I made the changes in the file3 (minus sign) which are reflected in the file3 (plus sign)
+``` 
+This is telling me that i made the changes to this file. I made the changes in the file3 (minus sign) which are reflected in the file3 (plus sign)
 
-# Cloning a specific branch in git: Cloning a specific branch in git is cloning a specific repository from remote and adding it your local repository. You can clone any branch of the repository 
+13. Cloning a specific branch in git: Cloning a specific branch in git is cloning a specific repository from remote and adding it your local repository. You can clone any branch of the repository 
 
+``` 
 sablokg@instance-1:~$ git clone --single-branch --branch master site_address 
 and then check the branch 
 cd site_address
 sablokg@instance-1:~$ git branch 
+``` 
 
 Now if you want to clone a specific branch of the git then you can clone using 
-sablokg@instance-1:~$ git checkout --track origin/dev # This will change the branch. 
 
-# Renaming a branch, sometimes, you want to rename a branch, you can rename a branch by 2 ways: 
+``` 
+sablokg@instance-1:~$ git checkout --track origin/dev  This will change the branch. 
+``` 
 
-  a) first moving to the branch and then doing the branch rename 
+14. Renaming a branch, sometimes, you want to rename a branch, you can rename a branch by 2 ways: 
+
+a) first moving to the branch and then doing the branch rename 
+
+```    
    sablokg@instance-1:~$ git checkout branch_name
    sablokg@instance-1:~$ git branch -m new_branch_name 
   b) sablokg@instance-1:~$ git branch -m old_branch_name new_branch_name
+``` 
 
-  After renaming a branch, you can push the new branch and delete the old branch, 
-  sablokg@instance-1:~$ git push origin -u new_branch_name 
-  sablokg@instance-1:~$ git push origin --delete old_branch_name
+After renaming a branch, you can push the new branch and delete the old branch, 
 
-# Removing a branch name or setting alternative for the remote branch: Since git is a version control software, so it means it stores a local copy of the version as well as stores the remote version aka remote repository of the code. It means, that you can work on your code in your local copy but untill and unless you commit and push the code to the remote, you will not find the code in the remote. 
-  # Suppose you want to remove a remote, 
+```   
+sablokg@instance-1:~$ git push origin -u new_branch_name 
+sablokg@instance-1:~$ git push origin --delete old_branch_name
+``` 
+15. Removing a branch name or setting alternative for the remote branch: Since git is a version control software, so it means it stores a local copy of the version as well as stores the remote version aka remote repository of the code. It means, that you can work on your code in your local copy but until and unless you commit and push the code to the remote, you will not find the code in the remote. 
 
-sablokg@instance-1:~$ git remote remove origin # where origin is the branch name. 
-sablokg@instance-1:~$ git remote set-url origin URL # This will allow changing the URL of the remote from the previous one to the new one.
+Suppose you want to remove a remote, 
 
-# Unmerging a last commit. You can unmerge a last commit by first checking out the git log and then unmerging the last commit. 
+``` 
+sablokg@instance-1:~$ git remote remove origin  where origin is the branch name. 
+sablokg@instance-1:~$ git remote set-url origin URL  This will allow changing the URL of the remote from the previous one to the new one.
+``` 
+16. Unmerging a last commit. You can unmerge a last commit by first checking out the git log and then unmerging the last commit. 
 
-sablokg@instance-1:~$ git regflog # This will give you the last commit made.  
+``` 
+sablokg@instance-1:~$ git regflog  This will give you the last commit made.  
 sablokg@instance-1:~$ git reset --merge commit name 
-sablokg@instance-1:~$ git reset --merge HEAD filename # This is the last commit made and unmerged. 
+sablokg@instance-1:~$ git reset --merge HEAD filename  This is the last commit made and unmerged. 
 sablokg@instance-1:~$ git reset commit name --hard to reset it to the commit name or git reset HEAD filename --hard to reset it to the last commit.
-sablokg@instance-1:~$ git reset --mixed commit name # This will reset it you to the stage where you add the files, means it will lead you to the unstagged state. 
-
-# Removing all the unnecessary files and you can do this by multiple ways: 
+sablokg@instance-1:~$ git reset --mixed commit name  This will reset it you to the stage where you add the files, means it will lead you to the unstagged state. 
+``` 
+17. Removing all the unnecessary files and you can do this by multiple ways: 
 
 a) First you can create a .gitignore file in your root directory where you have done $ git init, this .gitignore is a hidden file in which you can store all the files that you want to ignore. 
 
 b) You can list all the files to be cleaned by doing a dry run 
+
+``` 
 sablokg@instance-1:~$ git clean -d -n and this is a dry run to list all the files that you can be cleaned (-n) looping through all the directories -d. 
 sablokg@instance-1:~$ git clean -fx which will forcefully remove all the files. 
 sablokg@instance-1:~$ git clean -fd which will clean all the files looping through the directories.
 sablokg@instance-1:~$ git clean -fdx which will remove everything. 
 sablokg@instance-1:~$ git clean -d -i unless you are sure, you can use this to be sure that you can select which files to remove.  
+``` 
 
-# Making amendments in the git, You can think of amendments as addition or changes to the commit, if you can making a change to the git commit message or you are making a change to the files in the commit and no change in the commit message. 
+18. Making amendments in the git, You can think of amendments as addition or changes to the commit, if you can making a change to the git commit message or you are making a change to the files in the commit and no change in the commit message. 
 
-  a)sablokg@instance-1:~$ git commit --amend -m “feat: New message” # In this you have made changes to the commit message but kept the files same. 
-    # In this you have added new files but you have not changed the commit message. 
+``` 
+  a)sablokg@instance-1:~$ git commit --amend -m “feat: New message”  In this you have made changes to the commit message but kept the files same. 
+     In this you have added new files but you have not changed the commit message. 
   b)sablokg@instance-1:~$ git add newfile
   c)sablokg@instance-1:~$ git remove oldfile
   d)sablokg@instance-1:~$ git commit --amend --no-edit
-
-# Listing all the remote branches, fetching the remote branches. When you work with git, you remember that you have 2 types of repository, one is local repository and one is remote respository. Local repository is the one that stays on your local computer and remote is the one to which you pushes the final changes. 
-  $ sablokg@instance-1:~$ git branch # when you type this with in the git directory, it shows the branch of the local repository. 
-  $ sablokg@instance-1:~$ git branch -a -r # This will list all the local and the remote branches. 
-  $ sablokg@instance-1:~$ git branch remote show reponame # This will list all the branches on the remote repository and you can pull any of the branch.
+``` 
+ 
+19. Listing all the remote branches, fetching the remote branches. When you work with git, you remember that you have 2 types of repository, one is local repository and one is remote respository. Local repository is the one that stays on your local computer and remote is the one to which you pushes the final changes. 
+ ``` 
+  $ sablokg@instance-1:~$ git branch  when you type this with in the git directory, it shows the branch of the local repository. 
+  $ sablokg@instance-1:~$ git branch -a -r  This will list all the local and the remote branches. 
+  $ sablokg@instance-1:~$ git branch remote show reponame  This will list all the branches on the remote repository and you can pull any of the branch.
   $ sablokg@instance-1:~$ git fetch reponame branchname 
-
+``` 
   Here if you will use the reponame as origin then it will branch everything to origin. 
-
-I have uploaded 3 cheatsheet in the git folder for quick summary. 
 
 All work done on Google cloud computing platform and i thank you Google cloud computing platform for providing the resources.  
 
 Cheers Gaurav
+
