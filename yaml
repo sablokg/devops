@@ -21,6 +21,7 @@
 # Follow: Tutorialspoint.com & ![Cloubees] (https://www.cloudbees.com/blog/yaml-tutorial-everything-you-need-get-started)
 # You can also learn a quick ansible YAML at: ![Ansible] (https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html)
 # You can also learn a quick ansible YAML at : ! [Ansible] (https://www.javatpoint.com/ansible-yaml)
+# YAML was invented in 2001. 
 
 **************************************************
 # Start loading some examples in YAML as 
@@ -264,6 +265,34 @@ str: learn yaml 3
    subjectscores: 
    - maths: 30
    - anything: ~ #(Defining a null value, either ~ or null)
+   
 ...   
+
+
+YAML updates for some terms after reading from 
+
+[YAML_Link](https://www.freecodecamp.org/news/what-is-yaml-the-yml-file-format/)
+
+1. Serialization is a process where one application or service that has different data structures and is written in a different set of 
+technologies can transfer data to another application using a standard format.
+In other words, serialization is about translating, converting, and wrapping up a data structure in another format.
+
+
+To explicitly specify the type of data, use the !! symbol and the name of the data type before the value:
+
+# parse this value as a string
+date: !!str 2022-11-11
+
+## parse this value as a float (it will be 1.0 instead of 1)
+fave_number: !!float 1
+
+Scalars
+Scalars in YAML are the data on the page - strings, numbers, booleans, and nulls.
+
+Collections in YAML can be:
+
+Sequences (lists/arrays)
+Mappings (dictionaries/hashes)
+
 
 I end this YAML training here as this is enough to get all the ansible get going and unless you pound upon JSON, you dont need to do the YAML to JSON tags. 
